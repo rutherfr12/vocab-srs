@@ -37,10 +37,23 @@
       position: fixed; bottom: 0; left: 0; right: 0;
       background:#0b0b0c; border-top:1px solid #222; display:flex;
     }
-    .tab {
-      flex:1; padding: 12px 10px; text-align:center; color:#a1a1aa; font-weight:700;
-    }
-    .tab.active { color:#f4f4f5; }
+.tabs {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background:#0b0b0c; border-top:1px solid #222; display:flex;
+  z-index: 9999; /* <-- important on iOS */
+}
+
+.tab {
+  flex:1; padding: 12px 10px; text-align:center;
+  color:#a1a1aa; font-weight:700;
+
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation; /* <-- helps taps behave */
+}
+.tab.active { color:#f4f4f5; }
     .big { font-size: 22px; font-weight: 800; }
     .muted { color:#a1a1aa; }
     .tiny { font-size: 12px; color:#a1a1aa; }
@@ -66,12 +79,12 @@
 
   <main id="view"></main>
 
-  <nav class="tabs">
-    <div class="tab active" data-tab="review">Review</div>
-    <div class="tab" data-tab="add">Add</div>
-    <div class="tab" data-tab="cards">Cards</div>
-    <div class="tab" data-tab="import">Import/Export</div>
-  </nav>
+ <nav class="tabs">
+  <button class="tab active" type="button" data-tab="review">Review</button>
+  <button class="tab" type="button" data-tab="add">Add</button>
+  <button class="tab" type="button" data-tab="cards">Cards</button>
+  <button class="tab" type="button" data-tab="import">Import/Export</button>
+</nav>
 
   <script src="app.js"></script>
 </body>
